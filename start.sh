@@ -1,7 +1,4 @@
 #!/bin/bash
-
-echo "Mounting Google Drive using rclone..."
-rclone mount gdrive: /music --allow-other --daemon
-
-echo "Starting Navidrome..."
-/app/navidrome
+rclone mount gdrive:music /music --daemon
+sleep 5
+/opt/navidrome --musicfolder /music --port 4533
