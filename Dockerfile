@@ -21,7 +21,7 @@ COPY rclone.conf /root/.config/rclone/rclone.conf
 # Download and install Navidrome
 RUN curl -L https://github.com/navidrome/navidrome/releases/latest/download/navidrome_linux_amd64.tar.gz -o navidrome.tar.gz && \
     tar -xzf navidrome.tar.gz && \
-    mv navidrome /app && \
+    mv navidrome* /app && \
     chmod +x /app/navidrome && \
     rm navidrome.tar.gz
 
