@@ -8,6 +8,13 @@ RUN apt-get update && apt-get install -y curl unzip && \
     chmod 755 /usr/bin/rclone && \
     rm -rf rclone-*-linux-amd64*
 
-# Create config folder & copy rclone.conf
+# Copy rclone config
 RUN mkdir -p /etc/rclone
 COPY rclone.conf /etc/rclone/rclone.conf
+
+# Copy start script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+# Use custom start script
+CMD ["/start.sh"]
