@@ -18,10 +18,12 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
 RUN mkdir -p /root/.config/rclone
 COPY rclone.conf /root/.config/rclone/rclone.conf
 
-# Download and install Navidrome
-RUN curl -L https://github.com/navidrome/navidrome/releases/latest/download/navidrome_linux_amd64.tar.gz -o navidrome.tar.gz && \
-    tar -xzf navidrome.tar.gz && \
-    mv navidrome* /app && \
+# Download and install Navidrome (correct release version)
+ENV NAVIDROME_VERSION=0.52.4
+
+RUN curl -L https://github.com/navidrome/navidrome/releases/download/v${NAVIDROME_VERSION}/navidrome_${NAVIDROME_VERSION}_linux_amd64.tar.gz -o navidrome.tar.gz && \
+    mkdir -p /app && \
+    tar -xzf navidrome.tar.gz --strip-components=1 -C /app && \
     chmod +x /app/navidrome && \
     rm navidrome.tar.gz
 
@@ -32,5 +34,4 @@ RUN mkdir -p /music
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-# Run the script
 CMD ["/start.sh"]
