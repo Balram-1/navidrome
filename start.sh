@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Mount GDrive with rclone and start Navidrome
-rclone mount gdrive: /music --daemon
+echo "Mounting Google Drive using rclone..."
+rclone mount gdrive: /music --allow-other --daemon
 
-# Start Navidrome (adjust path if needed)
-./navidrome
+echo "Starting Navidrome..."
+/app/navidrome
