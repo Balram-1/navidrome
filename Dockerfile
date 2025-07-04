@@ -8,8 +8,6 @@ RUN apt-get update && apt-get install -y curl unzip && \
     chmod 755 /usr/bin/rclone && \
     rm -rf rclone-*-linux-amd64*
 
-# Copy rclone.conf into container
-COPY rclone.conf /app/rclone.conf
-
-# Set ENV so rclone uses the custom config
-ENV RCLONE_CONFIG=/app/rclone.conf
+# Create config folder & copy rclone.conf
+RUN mkdir -p /etc/rclone
+COPY rclone.conf /etc/rclone/rclone.conf
