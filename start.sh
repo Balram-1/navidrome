@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-# Sync music from GDrive to local
-rclone copy gdrive:/music /data/music --create-empty-src-dirs --drive-acknowledge-abuse=true --transfers=4 --checkers=8 --drive-chunk-size=64M
+# Mount GDrive with rclone and start Navidrome
+rclone mount gdrive: /music --daemon
 
-# Start navidrome
-/navidrome
+# Start Navidrome (adjust path if needed)
+./navidrome
