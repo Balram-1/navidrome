@@ -1,8 +1,10 @@
 FROM deluan/navidrome:latest
 
+# Install rclone dependencies on Alpine
+RUN apk add --no-cache curl unzip fuse3
+
 # Install rclone
-RUN apt-get update && apt-get install -y curl unzip && \
-    curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
+RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
     unzip rclone-current-linux-amd64.zip && \
     cp rclone-*-linux-amd64/rclone /usr/bin/ && \
     chmod 755 /usr/bin/rclone && \
@@ -12,9 +14,9 @@ RUN apt-get update && apt-get install -y curl unzip && \
 RUN mkdir -p /etc/rclone
 COPY rclone.conf /etc/rclone/rclone.conf
 
-# Copy start script
+# Copy startup script
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-# Use custom start script
+# Entry point
 CMD ["/start.sh"]
