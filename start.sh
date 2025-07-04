@@ -1,9 +1,4 @@
-#!/bin/sh
-
-# Mount Google Drive using rclone
-echo "Mounting Google Drive..."
-rclone mount gdrive:/Navidrome /music --daemon
-
-# Start Navidrome (reads from /music)
-echo "Starting Navidrome..."
-/app/navidrome
+chmod +x start.sh
+git add start.sh
+git commit -m "Make start.sh executable"
+git push
