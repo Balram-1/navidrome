@@ -1,6 +1,6 @@
 FROM debian:bullseye-slim
 
-# Install dependencies
+# Install dependencie
 RUN apt-get update && \
     apt-get install -y curl ffmpeg unzip && \
     # Install rclone
